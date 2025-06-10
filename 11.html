@@ -15,13 +15,16 @@
             background-color: #ffffff;
             color: #333333;
         }
+        /* 修改导航栏样式 */
         nav {
-            background-color: #333;
+            text-align: center;
+            background-color: transparent; /* 去除背景颜色 */
             overflow: hidden;
         }
         nav a {
-            float: left;
-            color: #f2f2f2;
+            display: inline-block; /* 使链接水平排列 */
+            float: none;
+            color: inherit; /* 继承父元素颜色 */
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
@@ -43,27 +46,46 @@
             background-color: #333333;
             color: #ffffff;
         }
-        body.dark-mode nav {
-            background-color: #1a1a1a;
+        body.dark-mode nav a {
+            color: inherit; /* 黑暗主题下导航链接颜色继承 */
+        }
+        body.dark-mode nav a:hover {
+            background-color: #555;
+            color: white;
         }
         #theme-toggle {
-            float: right;
+            display: inline-block; /* 使按钮水平排列 */
             background-color: #555;
             color: white;
             border: none;
             padding: 14px 16px;
             cursor: pointer;
+            vertical-align: middle; /* 垂直居中对齐 */
         }
         #theme-toggle:hover {
             background-color: #777;
         }
+        /* 新增欢迎标题样式 */
+        .welcome-title {
+            font-family: 'Arial Narrow', Arial, sans-serif;
+            font-size: 48px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .welcome-title a {
+            color: inherit;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
+    <!-- 新增欢迎标题 -->
+    <h1 class="welcome-title">
+        <a href="https://sellenzh.github.io">Welcome</a>
+    </h1>
     <nav>
         <a href="#basic-info">基本信息</a>
         <a href="#personal-experience">个人经历</a>
-
         <button id="theme-toggle">切换主题</button>
     </nav>
     <div class="content">
@@ -73,8 +95,6 @@
 
         <h2 id="personal-experience">个人经历</h2>
         <p>2017.09-2021.06 青岛大学 智能科学与技术 工学学士</p>
-
-        
     </div>
     <script>
         const themeToggle = document.getElementById('theme-toggle');
