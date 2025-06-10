@@ -10,6 +10,10 @@
             line-height: 1.6;
             margin: 0;
             padding: 0;
+            scroll-behavior: smooth; 
+            /* 明亮主题 */
+            background-color: #ffffff;
+            color: #333333;
         }
         nav {
             background-color: #333;
@@ -34,38 +38,56 @@
         .content {
             padding: 20px;
         }
+        /* 黑暗主题 */
+        body.dark-mode {
+            background-color: #333333;
+            color: #ffffff;
+        }
+        body.dark-mode nav {
+            background-color: #1a1a1a;
+        }
+        #theme-toggle {
+            float: right;
+            background-color: #555;
+            color: white;
+            border: none;
+            padding: 14px 16px;
+            cursor: pointer;
+        }
+        #theme-toggle:hover {
+            background-color: #777;
+        }
     </style>
 </head>
 <body>
     <nav>
         <a href="#basic-info">基本信息</a>
         <a href="#personal-experience">个人经历</a>
-        <a href="#skills">技能专长</a>
-        <a href="#contact">联系方式</a>
+
+        <button id="theme-toggle">切换主题</button>
     </nav>
     <div class="content">
         <h1 id="basic-info">基本信息</h1>
-        <p>姓名: 张三</p>
-        <p>职业: 前端开发者</p>
-        <p>邮箱: zhangsan@example.com</p>
+        <p>姓名: 张世林</p>
+        <p>邮箱: zhangshilin777@vip.qq.com</p>
 
         <h2 id="personal-experience">个人经历</h2>
-        <p>在 ABC 公司担任前端开发者已有 3 年时间，主要负责公司官网的前端开发工作，熟练掌握 HTML、CSS 和 JavaScript。</p>
+        <p>2017.09-2021.06 青岛大学 智能科学与技术 工学学士</p>
 
-        <h2 id="skills">技能专长</h2>
-        <ul>
-            <li>HTML5</li>
-            <li>CSS3</li>
-            <li>JavaScript</li>
-            <li>React.js</li>
-        </ul>
-
-        <h2 id="contact">联系方式</h2>
-        <p>你可以通过以下方式联系我：</p>
-        <ul>
-            <li>邮箱: <a href="mailto:zhangsan@example.com">zhangsan@example.com</a></li>
-            <li>GitHub: <a href="https://github.com/zhangsan" target="_blank">https://github.com/zhangsan</a></li>
-        </ul>
+        
     </div>
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                themeToggle.textContent = '明亮模式';
+            } else {
+                themeToggle.textContent = '黑暗模式';
+            }
+        });
+    </script>
 </body>
 </html>
