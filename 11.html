@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人简介</title>
-    <!-- 引入 Font Awesome 图标库 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -58,31 +57,33 @@
         /* 新的主题切换按钮样式 */
         #theme-toggle {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: #555;
+            top: 40px;
+            right: 40px;
+            background-color: transparent; /* 去除背景颜色 */
             color: white;
             border: none;
-            border-radius: 25px; /* 胶囊形状 */
+            border-radius: 0; /* 去除胶囊形状 */
             padding: 10px 15px;
             cursor: pointer;
             z-index: 1000;
             transition: background-color 0.3s ease;
         }
         #theme-toggle:hover {
-            background-color: #777;
+            background-color: transparent; /* 去掉鼠标悬停时的深色背景 */
         }
         /* 隐藏图标 */
-        #theme-toggle .fa-sun,
-        #theme-toggle .fa-moon {
+        #theme-toggle .sun-icon,
+        #theme-toggle .moon-icon {
             display: none;
+            width: 40px;
+            height: 40px;
         }
         /* 明亮模式显示太阳图标 */
-        body:not(.dark-mode) #theme-toggle .fa-sun {
+        body:not(.dark-mode) #theme-toggle .sun-icon {
             display: inline-block;
         }
         /* 黑暗模式显示月亮图标 */
-        body.dark-mode #theme-toggle .fa-moon {
+        body.dark-mode #theme-toggle .moon-icon {
             display: inline-block;
         }
         /* 新增欢迎标题样式 */
@@ -96,6 +97,25 @@
         .welcome-title a {
             color: inherit;
             text-decoration: none;
+        }
+        #theme-toggle .light-text,
+        #theme-toggle .dark-text {
+            display: none;
+            vertical-align: middle; /* 让文字垂直居中对齐图标 */
+            font-size: 18px; /* 增大字号，可根据需要调整 */
+        }
+        /* 明亮模式显示浅色文字，并设置深色颜色 */
+        body:not(.dark-mode) #theme-toggle .light-text {
+            display: inline;
+            color: #333333; /* 设置深色文字颜色 */
+            vertical-align: middle; /* 让文字垂直居中对齐图标 */
+            font-size: 18px; /* 增大字号，可根据需要调整 */
+        }
+        /* 黑暗模式显示深色文字 */
+        body.dark-mode #theme-toggle .dark-text {
+            display: inline;
+            vertical-align: middle; /* 让文字垂直居中对齐图标 */
+            font-size: 18px; /* 增大字号，可根据需要调整 */
         }
     </style>
 </head>
@@ -175,8 +195,10 @@
         </p>
     </div>
     <button id="theme-toggle">
-        <i class="fas fa-sun"></i>
-        <i class="fas fa-moon"></i>
+        <img class="sun-icon" src="_images/theme_sun.png" alt="Sun" title="浅色">
+        <span class="light-text">浅色</span>
+        <img class="moon-icon" src="_images/theme_moon.png" alt="Moon" title="深色">
+        <span class="dark-text">深色</span>
     </button>
     <script>
         const themeToggle = document.getElementById('theme-toggle');
