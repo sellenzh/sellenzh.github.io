@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人简介</title>
+    <!-- 引入 Font Awesome 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -53,24 +55,43 @@
             background-color: #555;
             color: white;
         }
+        /* 新的主题切换按钮样式 */
         #theme-toggle {
-            display: inline-block; /* 使按钮水平排列 */
+            position: fixed;
+            top: 20px;
+            right: 20px;
             background-color: #555;
             color: white;
             border: none;
-            padding: 14px 16px;
+            border-radius: 25px; /* 胶囊形状 */
+            padding: 10px 15px;
             cursor: pointer;
-            vertical-align: middle; /* 垂直居中对齐 */
+            z-index: 1000;
+            transition: background-color 0.3s ease;
         }
         #theme-toggle:hover {
             background-color: #777;
         }
+        /* 隐藏图标 */
+        #theme-toggle .fa-sun,
+        #theme-toggle .fa-moon {
+            display: none;
+        }
+        /* 明亮模式显示太阳图标 */
+        body:not(.dark-mode) #theme-toggle .fa-sun {
+            display: inline-block;
+        }
+        /* 黑暗模式显示月亮图标 */
+        body.dark-mode #theme-toggle .fa-moon {
+            display: inline-block;
+        }
         /* 新增欢迎标题样式 */
         .welcome-title {
-            font-family: 'Arial Narrow', Arial, sans-serif;
-            font-size: 48px;
-            text-align: center;
-            margin: 20px 0;
+        font-family: 'Arial Narrow', Arial, sans-serif;
+        font-size: 48px;
+        font-stretch: condensed; /* 让字体更细长 */
+        text-align: center;
+        margin: 20px 0;
         }
         .welcome-title a {
             color: inherit;
@@ -86,27 +107,83 @@
     <nav>
         <a href="#basic-info">基本信息</a>
         <a href="#personal-experience">个人经历</a>
-        <button id="theme-toggle">切换主题</button>
     </nav>
     <div class="content">
         <h1 id="basic-info">基本信息</h1>
-        <p>姓名: 张世林</p>
-        <p>邮箱: zhangshilin777@vip.qq.com</p>
+        <p>姓名: woshishei</p>
+        <p>邮箱: email </p>
+        <p>电话: 123456789</p>
+        <p>地址: 中国</p>
+        <p>简介: 我是一个计算机科学专业的学生，正在努力学习编程和数据分析。</p>
+        <p>
+            我对编程和数据分析充满热情，希望能够在未来的工作中发挥我的技能。
+        </p>
+        <p>
+            我喜欢解决问题，并且喜欢通过数据分析来发现问题的解决方案。
+        </p>
+        <p>
+            我希望能够在未来的工作中，能够运用我的编程和数据分析技能，为公司带来更多的价值。
+        </p>
+        <p>
+            我喜欢解决问题，并且喜欢通过数据分析来发现问题的解决方案。
+        </p>
+        <p>
+            我希望能够在未来的工作中，能够运用我的编程和数据分析技能，为公司带来更多的价值。
+        </p>
+        <p>
+            我喜欢解决问题，并且喜欢通过数据分析来发现问题的解决方案。
+        </p>
+        <p>
+            我希望能够在未来的工作中，能够运用我的编程和数据分析技能，为公司带来更多的价值。
+        </p>
+        <p>
+            我喜欢解决问题，并且喜欢通过数据分析来发现问题的解决方案。
+        </p>
+        <p>
+            我希望能够在未来的工作中，能够运用我的编程和数据分析技能，为公司带来更多的价值。
+        </p>
 
         <h2 id="personal-experience">个人经历</h2>
-        <p>2017.09-2021.06 青岛大学 智能科学与技术 工学学士</p>
+        <p> 工学学士</p>
+        <p>简介: 我是一个计算机科学专业的学生，正在努力学习编程和数据分析。</p>
+        <p>
+            我对编程和数据分析充满热情，希望能够在未来的工作中发挥我的技能。
+        </p>
+        <p>
+            我喜欢解决问题，并且喜欢通过数据分析来发现问题的解决方案。
+        </p>
+        <p>
+            我希望能够在未来的工作中，能够运用我的编程和数据分析技能，为公司带来更多的价值。
+        </p>
+        <p>
+            我喜欢解决问题，并且喜欢通过数据分析来发现问题的解决方案。
+        </p>
+        <p>
+            我希望能够在未来的工作中，能够运用我的编程和数据分析技能，为公司带来更多的价值。
+        </p>
+        <p>
+            我喜欢解决问题，并且喜欢通过数据分析来发现问题的解决方案。
+        </p>
+        <p>
+            我希望能够在未来的工作中，能够运用我的编程和数据分析技能，为公司带来更多的价值。
+        </p>
+        <p>
+            我喜欢解决问题，并且喜欢通过数据分析来发现问题的解决方案。
+        </p>
+        <p>
+            我希望能够在未来的工作中，能够运用我的编程和数据分析技能，为公司带来更多的价值。
+        </p>
     </div>
+    <button id="theme-toggle">
+        <i class="fas fa-sun"></i>
+        <i class="fas fa-moon"></i>
+    </button>
     <script>
         const themeToggle = document.getElementById('theme-toggle');
         const body = document.body;
 
         themeToggle.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
-            if (body.classList.contains('dark-mode')) {
-                themeToggle.textContent = '明亮模式';
-            } else {
-                themeToggle.textContent = '黑暗模式';
-            }
         });
     </script>
 </body>
