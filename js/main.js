@@ -22,10 +22,11 @@ async function loadCSV() {
 
         allData = result.data;
 
-        const categoryOrder = ['Review', 'End-to-End', '3D', 'Planning', 'Policy', 'Special'];
+        // const categoryOrder = ['Review', 'End-to-End', '3D', 'Planning', 'Policy', 'Special'];
+        const categoryOrder = ['Review', 'End-to-End'];
         allData.sort((a, b) => {
-            const aCat = (a['カテゴリ'] || '').split(',')[0].trim();
-            const bCat = (b['カテゴリ'] || '').split(',')[0].trim();
+            const aCat = (a['Category'] || '').split(',')[0].trim();
+            const bCat = (b['Category'] || '').split(',')[0].trim();
 
             const aIndex = categoryOrder.indexOf(aCat);
             const bIndex = categoryOrder.indexOf(bCat);
@@ -55,17 +56,15 @@ async function loadCSV() {
 
 function populateFilters() {
     const categories = [...new Set(allData.flatMap(row =>
-        (row['カテゴリ'] || '').split(',').map(c => c.trim()).filter(c => c)
+        (row['Title'] || '').split(',').map(c => c.trim()).filter(c => c)
     ))];
-    const tasks = [...new Set(allData.flatMap(row => (row['タスク'] || '').split(', ')).filter(v => v))];
+    const tasks = [...new Set(allData.flatMap(row => (row['Task'] || '').split(', ')).filter(v => v))];
     const modalities = [...new Set(allData.flatMap(row => (row['Modality'] || '').split(', ')).filter(v => v))];
-    const robots = [...new Set(allData.flatMap(row => (row['ロボット'] || '').split(', ')).filter(v => v))];
     const backbones = [...new Set(allData.flatMap(row => (row['Backbone'] || '').split(', ')).filter(v => v))];
 
     populateSelect('categoryFilter', categories);
     populateSelect('taskFilter', tasks);
     populateSelect('modalityFilter', modalities);
-    populateSelect('robotFilter', robots);
     populateSelect('backboneFilter', backbones);
 }
 
@@ -120,20 +119,20 @@ function updateTable() {
     pageData.forEach(row => {
         const tr = document.createElement('tr');
 
-        const categories = (row['カテゴリ'] || '').split(',').filter(c => c.trim());
+        const categories = (row['Title'] || '').split(',').filter(c => c.trim());
         tr.innerHTML += `<td>${categories.map(c => {
             const trimmed = c.trim();
             const highlighted = searchTerm ? highlightSearchTerm(trimmed, searchTerm) : trimmed;
             return `<span class="${getTagClass('category', trimmed)}">${highlighted}</span>`;
         }).join(' ')}</td>`;
 
-        const abbreviation = searchTerm ? highlightSearchTerm(row['略称'] || '', searchTerm) : (row['略称'] || '');
+        const abbreviation = searchTerm ? highlightSearchTerm(row['abbreviation'] || '', searchTerm) : (row['abbreviation'] || '');
         tr.innerHTML += `<td><strong>${abbreviation}</strong></td>`;
 
-        const title = searchTerm ? highlightSearchTerm(row['タイトル'] || '', searchTerm) : (row['タイトル'] || '');
+        const title = searchTerm ? highlightSearchTerm(row['Title'] || '', searchTerm) : (row['Title'] || '');
         tr.innerHTML += `<td class="wrap">${title}</td>`;
 
-        const conference = searchTerm ? highlightSearchTerm(row['学会'] || '', searchTerm) : (row['学会'] || '');
+        const conference = searchTerm ? highlightSearchTerm(row['Conference'] || '', searchTerm) : (row['Conference'] || '');
         tr.innerHTML += `<td>${conference}</td>`;
 
         const paperUrl = row['Paper URL'] || '';
@@ -142,7 +141,7 @@ function updateTable() {
         const websiteUrl = row['Website URL'] || '';
         tr.innerHTML += `<td>${websiteUrl ? `<a href="${websiteUrl}" target="_blank" class="link">Website</a>` : ''}</td>`;
 
-        const tasks = (row['タスク'] || '').split(',').filter(t => t.trim());
+        const tasks = (row['Task'] || '').split(',').filter(t => t.trim());
         tr.innerHTML += `<td>${tasks.map(t => {
             const trimmed = t.trim();
             const highlighted = searchTerm ? highlightSearchTerm(trimmed, searchTerm) : trimmed;
@@ -154,13 +153,6 @@ function updateTable() {
             const trimmed = d.trim();
             const highlighted = searchTerm ? highlightSearchTerm(trimmed, searchTerm) : trimmed;
             return `<span class="${getTagClass('domain', trimmed)}">${highlighted}</span>`;
-        }).join(' ')}</td>`;
-
-        const robots = (row['ロボット'] || '').split(',').filter(r => r.trim());
-        tr.innerHTML += `<td>${robots.map(r => {
-            const trimmed = r.trim();
-            const highlighted = searchTerm ? highlightSearchTerm(trimmed, searchTerm) : trimmed;
-            return `<span class="tag tag-default">${highlighted}</span>`;
         }).join(' ')}</td>`;
 
         const training = (row['Training'] || '').split(',').filter(t => t.trim());
@@ -211,10 +203,10 @@ function updateTable() {
 
 function calculateSearchScore(searchTerm, row) {
     const fieldWeights = {
-        '略称': 10,
-        'タイトル': 8,
-        'カテゴリ': 6,
-        'タスク': 5,
+        'abbreviation': 10,
+        'Title': 8,
+        'Category': 6,
+        'Task': 5,
         'Modality': 3
     };
 
@@ -250,14 +242,12 @@ function applyFilters() {
     const categoryFilters = getSelectedValues('categoryFilter');
     const taskFilters = getSelectedValues('taskFilter');
     const modalityFilters = getSelectedValues('modalityFilter');
-    const robotFilters = getSelectedValues('robotFilter');
     const backboneFilters = getSelectedValues('backboneFilter');
 
     const results = allData.map(row => {
-        if (categoryFilters.length > 0 && !categoryFilters.some(filter => (row['カテゴリ'] || '').split(',').some(c => c.trim() === filter))) return null;
-        if (taskFilters.length > 0 && !taskFilters.some(filter => (row['タスク'] || '').includes(filter))) return null;
+        if (categoryFilters.length > 0 && !categoryFilters.some(filter => (row['Category'] || '').split(',').some(c => c.trim() === filter))) return null;
+        if (taskFilters.length > 0 && !taskFilters.some(filter => (row['Task'] || '').includes(filter))) return null;
         if (modalityFilters.length > 0 && !modalityFilters.some(filter => (row['Modality'] || '').includes(filter))) return null;
-        if (robotFilters.length > 0 && !robotFilters.some(filter => (row['ロボット'] || '').includes(filter))) return null;
         if (backboneFilters.length > 0 && !backboneFilters.some(filter => (row['Backbone'] || '').includes(filter))) return null;
 
         if (searchTerm) {
@@ -294,13 +284,12 @@ function sortTable(column) {
     }
 
     const columnMap = {
-        0: 'カテゴリ',
-        1: '略称',
-        2: 'タイトル',
-        3: '学会',
-        7: 'タスク',
+        0: 'Category',
+        1: 'abbreviation',
+        2: 'Title',
+        3: 'conference',
+        7: 'Task',
         8: 'Domain',
-        9: 'ロボット',
         10: 'Training',
         11: 'Evaluation',
         12: 'Modality',
@@ -315,7 +304,7 @@ function sortTable(column) {
         let aVal = a[key] || '';
         let bVal = b[key] || '';
 
-        if (key === 'カテゴリ') {
+        if (key === 'Category') {
             aVal = aVal.split(',')[0].trim() || '';
             bVal = bVal.split(',')[0].trim() || '';
         }
@@ -369,7 +358,7 @@ function changePage(newPage) {
 function clearAllFilters() {
     document.getElementById('searchInput').value = '';
     
-    const filters = ['categoryFilter', 'taskFilter', 'modalityFilter', 'robotFilter', 'backboneFilter'];
+    const filters = ['categoryFilter', 'taskFilter', 'modalityFilter', 'backboneFilter'];
     filters.forEach(filterId => {
         const select = document.getElementById(filterId);
         for (let i = 0; i < select.options.length; i++) {
@@ -387,7 +376,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('categoryFilter').addEventListener('change', applyFilters);
     document.getElementById('taskFilter').addEventListener('change', applyFilters);
     document.getElementById('modalityFilter').addEventListener('change', applyFilters);
-    document.getElementById('robotFilter').addEventListener('change', applyFilters);
     document.getElementById('backboneFilter').addEventListener('change', applyFilters);
 
     document.querySelectorAll('th.sortable').forEach(th => {
