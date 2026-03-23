@@ -136,10 +136,18 @@ function updateTable() {
         tr.innerHTML += `<td><strong>${conference}</strong></td>`;
 
         const paperUrl = row['Paper URL'] || '';
-        tr.innerHTML += `<td>${paperUrl ? `<a href="${paperUrl}" target="_blank" class="link">Paper</a>` : ''}</td>`;
-
         const websiteUrl = row['Website URL'] || '';
-        tr.innerHTML += `<td>${websiteUrl ? `<a href="${websiteUrl}" target="_blank" class="link">Website</a>` : ''}</td>`;
+        let urlContent = '';
+        if (paperUrl) {
+            urlContent += `<a href="${paperUrl}" target="_blank" class="link">Paper</a>`;
+        }
+        if (paperUrl && websiteUrl) {
+            urlContent += ' | ';
+        }
+        if (websiteUrl) {
+            urlContent += `<a href="${websiteUrl}" target="_blank" class="link">Website</a>`;
+        }
+        tr.innerHTML += `<td>${urlContent}</td>`;
 
         const tasks = (row['Task'] || '').split(',').filter(t => t.trim());
         tr.innerHTML += `<td>${tasks.map(t => {
@@ -288,14 +296,14 @@ function sortTable(column) {
         1: 'Abbreviation',
         2: 'Title',
         3: 'Conference',
-        6: 'Task',
-        7: 'Domain',
-        8: 'Training',
-        9: 'Evaluation',
-        10: 'Modality',
-        11: 'Dataset',
-        12: 'Backbone',
-        13: 'Action Generation'
+        5: 'Task',
+        6: 'Domain',
+        7: 'Training',
+        8: 'Evaluation',
+        9: 'Modality',
+        10: 'Dataset',
+        11: 'Backbone',
+        12: 'Action Generation'
     };
 
     const key = columnMap[column];
