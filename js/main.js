@@ -241,7 +241,8 @@ function calculateSearchScore(searchTerm, row) {
 
 function getSelectedValues(selectId) {
     const select = document.getElementById(selectId);
-    return Array.from(select.selectedOptions).map(option => option.value).filter(value => value);
+    const value = select.value;
+    return value ? [value] : [];
 }
 
 function applyFilters() {
