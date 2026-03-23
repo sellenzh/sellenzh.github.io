@@ -288,14 +288,14 @@ function sortTable(column) {
         1: 'Abbreviation',
         2: 'Title',
         3: 'Conference',
-        7: 'Task',
-        8: 'Domain',
-        10: 'Training',
-        11: 'Evaluation',
-        12: 'Modality',
-        13: 'Dataset',
-        14: 'Backbone',
-        15: 'Action Generation'
+        6: 'Task',
+        7: 'Domain',
+        8: 'Training',
+        9: 'Evaluation',
+        10: 'Modality',
+        11: 'Dataset',
+        12: 'Backbone',
+        13: 'Action Generation'
     };
 
     const key = columnMap[column];

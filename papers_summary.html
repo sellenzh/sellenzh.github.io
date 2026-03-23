@@ -40,7 +40,7 @@
                     <h4>Interactive Paper Summary Table</h4>
                     <p>
                         Browse the database of read papers. Use the filters below to search by category,
-                        task type, modality, or robot platform. Click on column headers to sort.
+                        task type, or modality. Click on column headers to sort.
                     </p>
 
                     <div class="filters mt-4">
@@ -72,13 +72,6 @@
                             </div>
 
                             <div class="col-md-1 mb-3">
-                                <label for="robotFilter">Robot</label>
-                                <select id="robotFilter" class="form-control">
-                                    <option value="">All</option>
-                                </select>
-                            </div>
-
-                            <div class="col-md-1 mb-3">
                                 <label for="backboneFilter">Backbone</label>
                                 <select id="backboneFilter" class="form-control">
                                     <option value="">All</option>
@@ -102,15 +95,14 @@
                                     <th class="sortable" data-column="3">Conference</th>
                                     <th>Paper</th>
                                     <th>Website</th>
-                                    <th class="sortable" data-column="7">Task</th>
-                                    <th class="sortable" data-column="8">Domain</th>
-                                    <th class="sortable" data-column="9">Robot</th>
-                                    <th class="sortable" data-column="10">Training</th>
-                                    <th class="sortable" data-column="11">Evaluation</th>
-                                    <th class="sortable" data-column="12">Modality</th>
-                                    <th class="sortable" data-column="13">Dataset</th>
-                                    <th class="sortable" data-column="14">Backbone</th>
-                                    <th class="sortable" data-column="15">Action Gen</th>
+                                    <th class="sortable" data-column="6">Task</th>
+                                    <th class="sortable" data-column="7">Domain</th>
+                                    <th class="sortable" data-column="8">Training</th>
+                                    <th class="sortable" data-column="9">Evaluation</th>
+                                    <th class="sortable" data-column="10">Modality</th>
+                                    <th class="sortable" data-column="11">Dataset</th>
+                                    <th class="sortable" data-column="12">Backbone</th>
+                                    <th class="sortable" data-column="13">Action Gen</th>
                                 </tr>
                             </thead>
                             <tbody id="tableBody">
