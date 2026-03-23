@@ -23,7 +23,7 @@ async function loadCSV() {
         allData = result.data;
 
         // const categoryOrder = ['Review', 'End-to-End', '3D', 'Planning', 'Policy', 'Special'];
-        const categoryOrder = ['Review', 'End-to-End'];
+        const categoryOrder = ['Review', 'End2End'];
         allData.sort((a, b) => {
             const aCat = (a['Category'] || '').split(',')[0].trim();
             const bCat = (b['Category'] || '').split(',')[0].trim();
