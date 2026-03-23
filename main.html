@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Homepage</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .profile-img {
+            border-radius: 50%;
+            max-width: 200px;
+            height: auto;
+        }
+        .section {
+            padding: 60px 0;
+        }
+        .section-title {
+            margin-bottom: 40px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e74c3c;
+            display: inline-block;
+        }
+        .publication {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        .nav-link {
+            color: #555;
+        }
+        .nav-link:hover {
+            color: #e74c3c;
+        }
+        .active {
+            color: #e74c3c !important;
+            font-weight: 600;
+        }
+        .publication .btn-sm {
+            vertical-align: middle;
+            margin-left: 10px;
+            padding: 2px 8px;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="main.html">Academic Homepage</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#research">Research</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#publications">Publications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#education">Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="papers_summary.html">Paper Summary</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section id="about" class="section bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <img src="data/105904067.jpg" alt="Profile Image" class="profile-img img-fluid">
+                </div>
+                <div class="col-lg-9">
+                    <h2 class="section-title">About Me</h2>
+                    <h3>Shilin Zhang</h3>
+                    <p class="lead">Ph.D. Student in Control Science and Engineering</p>
+                    <p>Welcome to my academic homepage. I am a student focused on robotics learning and computer vision. My research interests include vision-language-action models, robotic manipulation, and embodied AI.</p>
+                    <div class="mt-4">
+                        <a href="#contact" class="btn btn-primary">Contact Me</a>
+                        <a href="#publications" class="btn btn-outline-primary ml-2">View Publications</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="section">
+        <div class="container">
+            <h2 class="section-title">Research Interests</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card mb-4 h-100">
+                        <div class="card-body d-flex flex-column">
+                            <!-- <h5 class="card-title"><i class="bi bi-robot"></i> VLA Models</h5> -->
+                            <h5 class="card-title"></i>🌟 VLA Models</h5>
+                            <p class="card-text flex-grow-1">Developing models that can understand and execute tasks based on visual and language inputs.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4 h-100">
+                        <div class="card-body d-flex flex-column">
+                            <!-- <h5 class="card-title"><i class="bi bi-hand-index"></i> Robotic Manipulation</h5> -->
+                            <h5 class="card-title"></i>🤖 Robotic Manipulation</h5>
+                            <p class="card-text flex-grow-1">Exploring techniques for dexterous manipulation and interaction with objects in unstructured environments.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4 h-100">
+                        <div class="card-body d-flex flex-column">
+                            <!-- <h5 class="card-title"><i class="bi bi-brain"></i> Embodied AI</h5> -->
+                            <h5 class="card-title"></i>🧠 Embodied AI</h5>
+                            <p class="card-text flex-grow-1">Building intelligent agents that can learn and operate in physical environments through interaction.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Publications</h2>
+            <div class="publication">
+                <h4>Evidential Multimodal Fusion Network for Trusted Pedestrian Crossing Intent Prediction</h4>
+                <p><strong>Shilin Zhang</strong>, Xiaobo Chen*, Wei Xu, Lei Yang, Jian Yang</p>
+                <p><em>IEEE Transactions on Computational Social Systems, 2025</em> <a href="https://ieeexplore.ieee.org/document/11073807/" target="_blank" class="btn btn-sm btn-outline-primary">Paper</a></p>
+            </div>
+            <div class="publication">
+                <h4>Robust Pedestrian Crossing Intention Prediction Via Uncertainty-Guided Transformer Ensemble Network for Autonomous Driving</h4>
+                <p>Xiaobo Chen*, <strong>Shilin Zhang</strong>, Wei Xu, Dapeng Cheng, Lei Yang</p>
+                <p><em>IEEE Transactions on Instrumentation and Measurement, 2025</em> <a href="https://ieeexplore.ieee.org/document/11021364/" target="_blank" class="btn btn-sm btn-outline-primary">Paper</a></p>
+            </div>
+            <div class="mt-4">
+                <a href="publication.html" class="btn btn-primary">View All Publications</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="timeline">
+                <div class="mb-4">
+                    <h4>Ph.D. in Control Science and Engineering</h4>
+                    <p><em>Dalian University of Technology, Sept. 2025 - Present</em></p>
+                    <p>Thesis: Vision-Language-Action Models for Robotic Manipulation</p>
+                </div>
+                <div class="mb-4">
+                    <h4>M.S. in Computer Science and Technology</h4>
+                    <p><em>Shandong Technology and Busniess University, Sept. 2022 - Jun. 2025</em></p>
+                    <p>Focus: Deep Learning and Computer Vision in Pedestrian Intention Estimate</p>
+                </div>
+                <div class="mb-4">
+                    <h4>B.S. in Intelligence Science and Technology</h4>
+                    <p><em>Qingdao University, Sept. 2017 - Jun. 2021</em></p>
+                    <p>Minor: Artificial Intelligence</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="mb-4">
+                                <h5><i class="bi bi-envelope"></i> Email</h5>
+                                <p>sellenzh@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="mb-4">
+                                <h5><i class="bi bi-building"></i> Address</h5>
+                                <p>Department of Control Science and Engineering, Dalian University of Technology, Dalian, China</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; With the help of Trae CN. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-right">
+                    <a href="https://github.com/sellenzh" class="text-white mr-3"><i class="bi bi-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
