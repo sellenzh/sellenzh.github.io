@@ -50,13 +50,13 @@ async function loadCSV() {
     } catch (error) {
         console.error('Error loading CSV:', error);
         document.getElementById('tableBody').innerHTML =
-            '<tr><td colspan="15" class="loading">Error loading CSV file. Please ensure vla_data.csv is in the data directory.</td></tr>';
+            '<tr><td colspan="15" class="loading">Error loading CSV file. Please ensure paper_data.csv is in the data directory.</td></tr>';
     }
 }
 
 function populateFilters() {
     const categories = [...new Set(allData.flatMap(row =>
-        (row['Title'] || '').split(',').map(c => c.trim()).filter(c => c)
+        (row['Category'] || '').split(',').map(c => c.trim()).filter(c => c)
     ))];
     const tasks = [...new Set(allData.flatMap(row => (row['Task'] || '').split(', ')).filter(v => v))];
     const modalities = [...new Set(allData.flatMap(row => (row['Modality'] || '').split(', ')).filter(v => v))];
@@ -119,14 +119,14 @@ function updateTable() {
     pageData.forEach(row => {
         const tr = document.createElement('tr');
 
-        const categories = (row['Title'] || '').split(',').filter(c => c.trim());
+        const categories = (row['Category'] || '').split(',').filter(c => c.trim());
         tr.innerHTML += `<td>${categories.map(c => {
             const trimmed = c.trim();
             const highlighted = searchTerm ? highlightSearchTerm(trimmed, searchTerm) : trimmed;
             return `<span class="${getTagClass('category', trimmed)}">${highlighted}</span>`;
         }).join(' ')}</td>`;
 
-        const abbreviation = searchTerm ? highlightSearchTerm(row['abbreviation'] || '', searchTerm) : (row['abbreviation'] || '');
+        const abbreviation = searchTerm ? highlightSearchTerm(row['Abbreviation'] || '', searchTerm) : (row['Abbreviation'] || '');
         tr.innerHTML += `<td><strong>${abbreviation}</strong></td>`;
 
         const title = searchTerm ? highlightSearchTerm(row['Title'] || '', searchTerm) : (row['Title'] || '');
@@ -203,7 +203,7 @@ function updateTable() {
 
 function calculateSearchScore(searchTerm, row) {
     const fieldWeights = {
-        'abbreviation': 10,
+        'Abbreviation': 10,
         'Title': 8,
         'Category': 6,
         'Task': 5,
@@ -285,9 +285,9 @@ function sortTable(column) {
 
     const columnMap = {
         0: 'Category',
-        1: 'abbreviation',
+        1: 'Abbreviation',
         2: 'Title',
-        3: 'conference',
+        3: 'Conference',
         7: 'Task',
         8: 'Domain',
         10: 'Training',
