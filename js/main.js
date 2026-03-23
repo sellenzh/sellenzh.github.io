@@ -7,7 +7,7 @@ let sortDirection = 'asc';
 
 async function loadCSV() {
     try {
-        const response = await fetch('data/vla_data.csv');
+        const response = await fetch('data/paper_data.csv');
         const text = await response.text();
 
         const result = Papa.parse(text, {

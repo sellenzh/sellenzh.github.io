@@ -1,1 +1,3 @@
-﻿Category,Abbreviation,Title,Conference,Paper URL,Website URL,Task,Domain,Training,Evaluation,Modality,Dataset,Backbone,Action Generation,,Abstract
+﻿Category,Abbreviation,Title,Conference,Paper URL,Website URL,Task,Domain,Training,Evaluation,Modality,Dataset,Backbone,Action Generation,Abstract
+Review,,"Vision-Language-Action Models: Concepts, Progress, Applications and Challenges",,https://arxiv.org/abs/2505.04769,,,,,,,,,,虽然它对近期的甚大阵列进行了很好的总结，但并没有系统地梳理其架构。此外，它还忽略了诸如基于可供性的设计方法等内容。
+End-to-End,TinyVLA,"TinyVLA: Towards Fast, Data-Efficient Vision-Language-Action Models for Robotic Manipulation",RAL,https://arxiv.org/abs/2409.12514,https://tiny-vla.github.io/,"Bi-manual, Manipulation",Tabletop,"LoRA, Supervised",MetaWorld,"Language, Proprioception, Vision",,"Pythia, ViT",Diffusion,TinyVLA 仅需在小型 VLM（≤13 亿字节）上学习 LoRa，并直接使用扩散策略对动作进行采样，即使没有先前的机器人数据，其速度也比 OpenVLA 快 20 倍，成功率也更高。→ TinyVLA 模型采用轻量级 VLM + LoRa + 扩散头，同时实现了“高速、数据效率高和通用性强”的目标。
