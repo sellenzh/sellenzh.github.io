@@ -133,7 +133,7 @@ function updateTable() {
         tr.innerHTML += `<td class="wrap">${title}</td>`;
 
         const conference = searchTerm ? highlightSearchTerm(row['Conference'] || '', searchTerm) : (row['Conference'] || '');
-        tr.innerHTML += `<td>${conference}</td>`;
+        tr.innerHTML += `<td><strong>${conference}</strong></td>`;
 
         const paperUrl = row['Paper URL'] || '';
         tr.innerHTML += `<td>${paperUrl ? `<a href="${paperUrl}" target="_blank" class="link">Paper</a>` : ''}</td>`;
