@@ -137,16 +137,25 @@ function updateTable() {
 
         const paperUrl = row['Paper URL'] || '';
         const websiteUrl = row['Website URL'] || '';
+        const codeUrl = row['Code URL'] || '';
+        const datasetUrl = row['Dataset URL'] || '';
         let urlContent = '';
+        const urls = [];
+        
         if (paperUrl) {
-            urlContent += `<a href="${paperUrl}" target="_blank" class="link">Paper</a>`;
-        }
-        if (paperUrl && websiteUrl) {
-            urlContent += ' | ';
+            urls.push(`<a href="${paperUrl}" target="_blank" class="link">Paper</a>`);
         }
         if (websiteUrl) {
-            urlContent += `<a href="${websiteUrl}" target="_blank" class="link">Website</a>`;
+            urls.push(`<a href="${websiteUrl}" target="_blank" class="link">Website</a>`);
         }
+        if (codeUrl) {
+            urls.push(`<a href="${codeUrl}" target="_blank" class="link">Code</a>`);
+        }
+        if (datasetUrl) {
+            urls.push(`<a href="${datasetUrl}" target="_blank" class="link">Dataset</a>`);
+        }
+        
+        urlContent = urls.join(' | ');
         tr.innerHTML += `<td>${urlContent}</td>`;
 
         const tasks = (row['Task'] || '').split(',').filter(t => t.trim());
