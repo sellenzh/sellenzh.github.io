@@ -100,29 +100,94 @@
         <section id="publications" class="section bg-light">
             <div class="container">
                 <h2 class="section-title">Publications</h2>
-                <div class="publication">
-                    <h4>Evidential Multimodal Fusion Network for Trusted Pedestrian Crossing Intent Prediction</h4>
-                    <p><strong>Shilin Zhang</strong>, Xiaobo Chen*, Wei Xu, Lei Yang, Jian Yang</p>
-                    <p><em>IEEE Transactions on Computational Social Systems, 2025</em> <a href="https://ieeexplore.ieee.org/document/11073807/" target="_blank" class="btn btn-sm btn-outline-primary">Paper</a></p>
-                </div>
-                <div class="publication">
-                    <h4>Robust Pedestrian Crossing Intention Prediction Via Uncertainty-Guided Transformer Ensemble Network for Autonomous Driving</h4>
-                    <p>Xiaobo Chen*, <strong>Shilin Zhang</strong>, Wei Xu, Dapeng Cheng, Lei Yang</p>
-                    <p><em>IEEE Transactions on Instrumentation and Measurement, 2025</em> <a href="https://ieeexplore.ieee.org/document/11021364/" target="_blank" class="btn btn-sm btn-outline-primary">Paper</a></p>
-                </div>
-                <div class="publication">
-                    <h4>Pedestrian Crossing Intention Prediction Via Progressive Multimodal Token Fusion for Autonomous Driving</h4>
-                    <p>Xiaobo Chen*, Wei Xu, <strong>Shilin Zhang</strong>, Yingfeng Cai</p>
-                    <p><em>IEEE Transactions on Intelligent Transportation Systems, 2025</em> <a href="https://ieeexplore.ieee.org/document/11006279/" target="_blank" class="btn btn-sm btn-outline-primary">Paper</a></p>
-                </div>
-                <div class="publication">
-                    <h4>Pedestrian Crossing Intention Prediction Based on Cross-Modal Transformer and Uncertainty-Aware Multi-Task Learning for Autonomous Driving</h4>
-                    <p>Xiaobo Chen*, <strong>Shilin Zhang</strong>, Jun Li, Jian Yang</p>
-                    <p><em>IEEE Transactions on Intelligent Transportation Systems, 2024</em> <a href="https://ieeexplore.ieee.org/document/10651572/" target="_blank" class="btn btn-sm btn-outline-primary">Paper</a> <a href="https://github.com/sellenzh/PedCMT" target="_blank" class="btn btn-sm btn-outline-primary ml-2">Code</a></p>
-                </div>
-                <!-- Add more publications here -->
+                <div id="publications-container"></div>
             </div>
         </section>
+
+        <script>
+            // 从CSV文件读取数据并生成出版物列表
+            async function loadPublications() {
+                try {
+                    const response = await fetch('data/pub.csv');
+                    const csvText = await response.text();
+                    const lines = csvText.split('\n');
+                    const headers = lines[0].split(',');
+                    const publications = [];
+
+                    // 解析CSV数据
+                    for (let i = 1; i < lines.length; i++) {
+                        if (lines[i].trim() === '') continue;
+                        
+                        // 处理包含逗号的字段
+                        const fields = [];
+                        let currentField = '';
+                        let inQuotes = false;
+                        
+                        for (let j = 0; j < lines[i].length; j++) {
+                            const char = lines[i][j];
+                            if (char === '"') {
+                                inQuotes = !inQuotes;
+                            } else if (char === ',' && !inQuotes) {
+                                fields.push(currentField.trim());
+                                currentField = '';
+                            } else {
+                                currentField += char;
+                            }
+                        }
+                        fields.push(currentField.trim());
+
+                        if (fields.length >= headers.length) {
+                            const pub = {};
+                            headers.forEach((header, index) => {
+                                pub[header] = fields[index];
+                            });
+                            publications.push(pub);
+                        }
+                    }
+
+                    // 生成HTML
+                    const container = document.getElementById('publications-container');
+                    container.innerHTML = '';
+
+                    publications.forEach(pub => {
+                        // 处理作者列表，添加加粗和通讯作者标记
+                        const authors = pub.Authors.split(', ');
+                        const boldAuthorIndex = parseInt(pub.bold_author_num) - 1;
+                        const corAuthorIndex = parseInt(pub.cor_author_num) - 1;
+
+                        const authorsHtml = authors.map((author, index) => {
+                            let authorHtml = author;
+                            if (index === boldAuthorIndex) {
+                                authorHtml = `<strong>${author}</strong>`;
+                            }
+                            if (index === corAuthorIndex) {
+                                authorHtml += '*';
+                            }
+                            return authorHtml;
+                        }).join(', ');
+
+                        // 生成出版物卡片
+                        const publicationDiv = document.createElement('div');
+                        publicationDiv.className = 'publication';
+
+                        publicationDiv.innerHTML = `
+                            <h4>${pub.Title}</h4>
+                            <p>${authorsHtml}</p>
+                            <p><em>${pub.Source}, ${pub.Year}</em> ${pub.paper_url ? `<a href="${pub.paper_url}" target="_blank" class="btn btn-sm btn-outline-primary">Paper</a>` : ''} ${pub.code_url ? `<a href="${pub.code_url}" target="_blank" class="btn btn-sm btn-outline-primary ml-2">Code</a>` : ''}</p>
+                        `;
+
+                        container.appendChild(publicationDiv);
+                    });
+                } catch (error) {
+                    console.error('Error loading publications:', error);
+                    const container = document.getElementById('publications-container');
+                    container.innerHTML = '<p>Error loading publications. Please try again later.</p>';
+                }
+            }
+
+            // 页面加载完成后加载出版物数据
+            document.addEventListener('DOMContentLoaded', loadPublications);
+        </script>
     </div>
 
     <!-- Footer -->
